@@ -1,0 +1,15 @@
+2. Find top X accessed photos (file format could be gif,jpg, html)
+
+#we can make use of --grep-- command and search for the required patterns in our file
+#we can also make use of --cat-- command to display the contents of the file
+
+#if we need to use the file command to try to recognize the type of file, regardless of filename (or extension).
+
+#after setting up the vim editor pass the following code to get top X accessed photos
+
+awk /path/to -regex ".*\.\(jpg\|gif\|html\)" > log
+
+
+#we need to group our OR expression in escaped parentheses,otherwise the execution only  applies to the last part (i.e-html)
+
+

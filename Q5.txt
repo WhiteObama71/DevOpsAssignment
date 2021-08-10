@@ -1,0 +1,60 @@
+5.Count of different file types
+
+#in terminal
+
+ls -l --> lists all the files in the working directory (in long format)
+
+#making a command line to make sure we dont include the top line
+
+ls - l | wc - l
+
+
+#but for the accurate count,counting should start from the second line of output
+
+ls - l | tail +2 | wc -l
+
+NUMFILES=$(ls - l | tail+2 | wc - l)
+echo $NUMFILES
+
+#creating a variable to store the exact count gives the same output as the previous command
+
+cd bin
+#going back to the bin directory before creating the vim(can use other text editors)
+
+#creating vim directory 
+
+vim count.sh
+#code inside vim directory
+
+#!/bin/bash
+echo -e "which directory to count \c"
+read DIR
+NUMFILES=$(ls -l $DIR | tail+2 | wc -l)
+echo -e"$NUMFILES within $DIR\n"
+
+#prints noof directories
+
+#now we will make a variable to pipe it through grep -c so that we can count the noof lines
+NUMORD=$(ls -l $DIR | grep -c ^-)
+NUMDIR=$(ls -l $DIR | grep -c ^d)
+NUMLINKS=$(ls -l $dir | grep -c^l)
+
+echo -e "$NUMORD files within $DIR\n"
+echo -e "$NUMDIR files within $DIR\n"
+echo -e "$NUMLIMKS files within $DIR\n"
+
+#create a new variable TOTAL so store arithmatic sum 
+
+((TOTAL = NUMORD + NUMDIR + NUMLINKS))
+echo -e "$TOTAL files within $DIR\n"
+
+#back in terminal
+#give executable permission to the file
+
+chmod +x count.sh
+
+vim count.sh
+
+#gives the output of each contains from the given log
+
+ 

@@ -1,0 +1,69 @@
+1.Find Top X URLs in the last N logs where N is 100, 200, 500 and 1000 
+
+#after creating a rep in vim text editor(or other text editors as preferred by the user)
+
+#!/bin/bash
+#Usage
+#when N=1000
+ls-httpd url 1000
+type=$1
+length=$2
+
+if[ "$3" == "" ]; then
+log_file="/var/log/httpd/website.com-access_log"
+
+elif [ "$type" = "url" ]; then
+  tail -n $length $log_file | awk -F\" '{print $2}'| sort -n | uniq -c | sort -n
+
+else
+  log_file="$3"
+fi
+
+#when N=100
+ls-httpd url 100
+type=$1
+length=$2
+
+if[ "$3" == "" ]; then
+log_file="/var/log/httpd/website.com-access_log"
+
+elif [ "$type" = "url" ]; then
+  tail -n $length $log_file | awk -F\" '{print $2}'| sort -n | uniq -c | sort -n
+
+else
+  log_file="$3"
+fi
+
+#when N=200
+ls-httpd url 200
+type=$1
+length=$2
+
+if[ "$3" == "" ]; then
+log_file="/var/log/httpd/website.com-access_log"
+
+elif [ "$type" = "url" ]; then
+  tail -n $length $log_file | awk -F\" '{print $2}'| sort -n | uniq -c | sort -n
+
+else
+  log_file="$3"
+fi
+
+#when N=500
+ls-httpd url 500
+type=$1
+length=$2
+
+if[ "$3" == "" ]; then
+log_file="/var/log/httpd/website.com-access_log"
+
+elif [ "$type" = "url" ]; then
+  tail -n $length $log_file | awk -F\" '{print $2}'| sort -n | uniq -c | sort -n
+
+else
+  log_file="$3"
+
+fi
+
+
+#lists all Top X urls within last N logs

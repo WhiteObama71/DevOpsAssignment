@@ -1,0 +1,30 @@
+6.Print logs between a range of time (like print logs between 11:00:000 to 20:00:00 )
+ 
+APPROACH 1:
+
+#using grep and regular expresions 
+#to return all logs between 11:00:000 to 20:00:00
+
+grep "09/Aug/2021:[11-20]:00:00" log.txt
+
+
+APPROACH 2:
+
+#using a variable we could customize
+# but the most important step is to convert the interval in seconds
+#11-20--> means 9 hrs interval =9*60*60 seconds
+
+
+#!/bin/sh
+x=$((9*60*60))
+
+last=$(tail -n1 website|awk -F'[][]' '{ gsub(/\//," ",$2); sub(/:/," ",$2); "date +%s -d \""$2"\""|getline d; print d;}' )
+
+
+# this line get the timestamp in seconds of last line of our logfile
+
+awk -F'[][]' -v last=$last -v x=$x '{ gsub(/\//," ",$2); sub(/:/," ",$2); "date +%s -d \""$2"\""|getline d; if (last-d<=x)print $0 }' website     
+
+#this awk will give us lines you needs.
+
+# the output extracts all the data from the logfile within that given time range

@@ -1,0 +1,24 @@
+4. Find Hit Ratio (requests giving 200 or any other status code vs other)
+
+#we can evaluate http response codes here
+#for a specific servername as --
+
+#for code 200
+
+#!/bin/bash
+
+status_code=$(curl --write-out %{http_code} --silent --output /dev/null www.bbc.co.uk/news)
+
+if [[ "$status_code" -ne 200 ]] ; then
+  echo "Site status changed to $status_code" 
+else
+  exit 0
+fi
+
+
+#mathematical evaluation for HIT RATIO:-
+#To calculate a hit ratio, divide the number of cache hits with the sum of the number of cache hits, and the number of cache misses.
+
+
+
+
